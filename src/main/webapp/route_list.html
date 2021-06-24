@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>租号玩</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/getParameter.js"></script>
+    <script>
+        $(function () {
+/*            var search = location.search;
+//切割字符串，拿到第二个值
+            var cid = search.split("=")[1];*/
+            //获取cid的值
+            var cid = getParameter("cid")
+            //获取rname的参数值
+            var rname = getParameter("rname");
+            //判断rname不为null就解码
+            if(rname){
+                rname=window.decodeURIComponent(rname)
+            }
+
+//当页码加载完成后，调用load方法，发送ajax请求加载数据
+            load(cid,null,rname)
+
+        })
+        
+        function load(cid,currentPage,rname) {
+            //发送ajax请求，请求route/pageQuery，传递cid
+            $.get("route/pageQuery",{cid:cid,currentPage:currentPage,rname:rname},function (pb) {
+                //解析pagebean数据，展示到页面上
+
+                //分页工具条数据展示
+                //1.1展示总页码和总记录数
+                $("#totalPage").html(pb.totalPage)
+                $("#totalCount").html(pb.totalCount)
+
+                /*
+                <li><a href="">首页</a></li>
+                            <li class="threeword"><a href="#">上一页</a></li>
+                            <li class="curPage"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">6</a></li>
+                            <li><a href="#">7</a></li>
+                            <li><a href="#">8</a></li>
+                            <li><a href="#">9</a></li>
+                            <li><a href="#">10</a></li>
+                            <li class="threeword"><a href="javascript:;">下一页</a></li>
+                            <li class="threeword"><a href="javascript:;">末页</a></li>
+                 */
+                var lis = "";
+                var firstpage = '<li onclick="javascript:load('+cid+',1,\''+rname+'\')"><a href="javascript:void(0)">首页</a></li>'
+
+                //计算上一页的页码
+                var beforeNum=pb.currentPage - 1
+                if(beforeNum<=0){
+                    beforeNum=1
+                }
+
+                var beforePage='<li onclick="javascript:load('+cid+','+beforeNum+',\''+rname+'\')" class="threeword"><a href="javascript:void(0)">上一页</a></li>'
+                lis+=firstpage
+                lis+=beforePage
+
+                var begin
+                var end
+
+                //1.要显示10个页码
+                if(pb.totalPage<10){
+                    //总页码不够10页
+                    begin = 1
+                    end = pb.totalPage
+                }else {
+                    //总页码超过10页
+                    begin = pb.currentPage - 5
+                    end = pb.currentPage+4
+
+                    //2.如果前辈不够5个，后边补齐10个
+                    if(begin<1){
+                        begin=1
+                        end=begin+9
+                    }
+
+                    //3.如果后边不足4个，前边补齐10个
+                    if(end >pb.totalPage){
+                        end = pb.totalPage
+                        begin = end-9
+                    }
+                }
+
+                for (var i = begin; i <=end ; i++) {
+                    //判断当前页码是否等于i
+                    if(pb.currentPage==i){
+                        var li = '<li class="curPage" onclick="javascript:load('+cid+','+i+',\''+rname+'\')"><a href="javascript:void(0)">'+i+'</a></li>'
+                    }else {
+                        //创建页码的li
+                        var li = '<li onclick="javascript:load('+cid+','+i+',\''+rname+'\')"><a href="javascript:void(0)">'+i+'</a></li>'
+                    }
+
+                    //拼接字符串
+                    lis +=li;
+                }
+
+
+
+
+
+         /*  //1.2展示分页页码
+                for (var i = 1; i <=pb.totalPage ; i++) {
+                    //判断当前页码是否等于i
+                    if(pb.currentPage==i){
+                        var li = '<li class="curPage" onclick="javascript:load('+cid+','+i+')"><a href="javascript:void(0)">'+i+'</a></li>'
+                    }else {
+                        //创建页码的li
+                        var li = '<li onclick="javascript:load('+cid+','+i+')"><a href="javascript:void(0)">'+i+'</a></li>'
+                    }
+
+                    //拼接字符串
+                    lis +=li;
+                }*/
+                var lastpage = ' <li onclick="javascript:load('+cid+',103,\''+rname+'\')" class="threeword"><a href="javascript:void(0)">末页</a></li>'
+
+                ////计算下一页的页码
+                var nextNum=pb.currentPage + 1
+                if(nextNum>103){
+                    nextNum=103
+                }
+                var nextPage=' <li onclick="javascript:load('+cid+','+nextNum+',\''+rname+'\')" class="threeword"><a href="javascript:void(0)">下一页</a></li>'
+                lis+=nextPage
+                lis+=lastpage
+
+                //将lis内容设置到ul
+                $("#pageNum").html(lis)
+
+
+
+
+
+                //列表数据展示
+                var route_lis="";
+                for (var i = 0; i < pb.list.length; i++) {
+                    //获取{rid:1,rname:"xxx"}
+                    var route = pb.list[i]
+                    var li = ' <li>\n' +
+                        '                            <div class="img"><img src="'+route.rimage+'" style="width: 299px"></div>\n' +
+                        '                            <div class="text1">\n' +
+                        '                                <p>'+route.rname+'</p>\n' +
+                        '                                <br/>\n' +
+                        '                                <p>'+route.routeIntroduce+'</p>\n' +
+                        '                            </div>\n' +
+                        '                            <div class="price">\n' +
+                        '                                <p class="price_num">\n' +
+                        '                                    <span>&yen;</span>\n' +
+                        '                                    <span>'+route.price+'</span>\n' +
+                        '                                    <span>起</span>\n' +
+                        '                                </p>\n' +
+                        '                                <p><a href="route_detail.html">查看详情</a></p>\n' +
+                        '                            </div>\n' +
+                        '                        </li>'
+                    route_lis+=li
+                }
+                $("#route").html(route_lis)
+
+
+                //定位到页面的顶部
+                window.scrollTo(0,0)
+            })
+
+
+        }
+
+
+
+    </script>
+
+</head>
+<body>
+<!--引入头部-->
+    <div id="header"></div>
+    <div class="page_one">
+        <div class="contant">
+            <div class="crumbs">
+                <img src="images/search.png" alt="">
+                <p>租号玩><span>搜索结果</span></p>
+            </div>
+            <div class="xinxi clearfix">
+                <div class="left">
+                    <div class="header">
+                        <span>商品信息</span>
+                        <span class="jg">价格</span>
+                    </div>
+                    <ul id="route">
+                        <li>
+                            <div class="img"><img src="img/product/gamelogo/LOLgoumai.webp" alt="" width="200px" height="180px"></div>
+                            <div class="text1">
+                                <p>妹妹号丨1989P丨摄魂薇恩丨KDA卡莎丨龙瞎丨至臻阿卡丽塞</p>
+                                <br/>
+                                <p>热度347|英雄153|皮肤1081</p>
+                            </div>
+                            <div class="price">
+                                <p class="price_num">
+                                    <span>&yen;</span>
+                                    <span>2.3/小时</span>
+                                    <span>起</span>
+                                </p>
+                                <p><a href="route_detail.html">查看详情</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img"><img src="img/product/gamelogo/LOLgoumai.webp" alt="" width="200px" height="180px"></div>
+                            <div class="text1">
+                                <p>猴年莫甘娜〓机械迷城〓胜利男枪〓源计划亚索〓黑牛灌篮高手</p>
+                                <br/>
+                                <p>热度267|英雄163|皮肤1231</p>
+                            </div>
+                            <div class="price">
+                                <p class="price_num">
+                                    <span>&yen;</span>
+                                    <span>4.5/小时</span>
+                                    <span>起</span>
+                                </p>
+                                <p><a href="route_detail.html">查看详情</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img"><img src="img/product/gamelogo/LOLgoumai.webp" alt="" width="200px" height="180px"></div>
+                            <div class="text1">
+                                <p>400P〓海克斯鳄鱼〓电玩锐雯人马〓IG卡莎〓神龙瞎〓5至臻</p>
+                                <br/>
+                                <p>热度134|英雄79|皮肤111</p>
+                            </div>
+                            <div class="price">
+                                <p class="price_num">
+                                    <span>&yen;</span>
+                                    <span>1.2/小时</span>
+                                    <span>起</span>
+                                </p>
+                                <p><a href="route_detail.html">查看详情</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img"><img src="img/product/gamelogo/LOLgoumai.webp" alt="" width="200px" height="180px"></div>
+                            <div class="text1">
+                                <p>缘分❤600P养蜂人ぃ6至臻ぃIG套ぃ周年阿狸ezぃ张辽美猴</p>
+                                <br/>
+                                <p>热度312|英雄138|皮肤1641</p>
+                            </div>
+                            <div class="price">
+                                <p class="price_num">
+                                    <span>&yen;</span>
+                                    <span>6.4/小时</span>
+                                    <span>起</span>
+                                </p>
+                                <p><a href="route_detail.html">查看详情</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img"><img src="img/product/gamelogo/LOLgoumai.webp" alt="" width="200px" height="180px"></div>
+                            <div class="text1">
+                                <p>电一200皮可排⭐黎明锐雯⭐海贼瑞兹⭐至高之拳⭐灌篮高手⭐</p>
+                                <br/>
+                                <p>热度255|英雄128|皮肤1141</p>
+                            </div>
+                            <div class="price">
+                                <p class="price_num">
+                                    <span>&yen;</span>
+                                    <span>5.5/小时</span>
+                                    <span>起</span>
+                                </p>
+                                <p><a href="route_detail.html">查看详情</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img"><img src="img/product/gamelogo/LOLgoumai.webp" alt="" width="200px" height="180px"></div>
+                            <div class="text1">
+                                <p>可排位【黄金Ⅳ】725精品皮肤：哥特萝莉，至臻卡莎-摄魂VN</p>
+                                <br/>
+                                <p>热度213|英雄108|皮肤141</p>
+                            </div>
+                            <div class="price">
+                                <p class="price_num">
+                                    <span>&yen;</span>
+                                    <span>1.9/小时</span>
+                                    <span>起</span>
+                                </p>
+                                <p><a href="route_detail.html">查看详情</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img"><img src="img/product/gamelogo/LOLgoumai.webp" alt="" width="200px" height="180px"></div>
+                            <div class="text1">
+                                <p>水晶之痕128皮肤☪8限定☪10传说☪37史诗☪3炫彩A76</p>
+                                <br/>
+                                <p>热度513|英雄138|皮肤1853</p>
+                            </div>
+                            <div class="price">
+                                <p class="price_num">
+                                    <span>&yen;</span>
+                                    <span>7.3/小时</span>
+                                    <span>起</span>
+                                </p>
+                                <p><a href="route_detail.html">查看详情</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img"><img src="img/product/gamelogo/LOLgoumai.webp" alt="" width="200px" height="180px"></div>
+                            <div class="text1">
+                                <p>钢铁烈阳150皮可排⭐至臻电玩⭐电玩赏金⭐御星寒冰⭐勇敢的心</p>
+                                <br/>
+                                <p>热度123|英雄55|皮肤241</p>
+                            </div>
+                            <div class="price">
+                                <p class="price_num">
+                                    <span>&yen;</span>
+                                    <span>2.5/小时</span>
+                                    <span>起</span>
+                                </p>
+                                <p><a href="route_detail.html">查看详情</a></p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="page_num_inf">
+                        <i></i> 共
+                        <span id="totalPage">12</span>页<span id="totalCount">132</span>条
+                    </div>
+                    <div class="pageNum">
+                        <ul id="pageNum">
+                            <li><a href="">首页</a></li>
+                            <li class="threeword"><a href="#">上一页</a></li>
+                            <li class="curPage"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">6</a></li>
+                            <li><a href="#">7</a></li>
+                            <li><a href="#">8</a></li>
+                            <li><a href="#">9</a></li>
+                            <li><a href="#">10</a></li>
+                            <li class="threeword"><a href="javascript:;">下一页</a></li>
+                            <li class="threeword"><a href="javascript:;">末页</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="top">
+                        <div class="hot">HOT</div>
+                        <span>热门推荐</span>
+                    </div>
+                    <ul>
+                        <li>
+                            <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
+                            <div class="right">
+                                <p>1600皮肤❤炫彩五色龙瞎❤致胜神王❤海克斯全套-摄魂恐惧</p>
+                                <p>优惠价<span>&yen;<span>3.6</span>起</span>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
+                            <div class="right">
+                                <p>1600皮肤❤炫彩五色龙瞎❤致胜神王❤海克斯全套-摄魂恐惧</p>
+                                <p>优惠价<span>&yen;<span>3.6</span>起</span>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
+                            <div class="right">
+                                <p>1600皮肤❤炫彩五色龙瞎❤致胜神王❤海克斯全套-摄魂恐惧</p>
+                                <p>优惠价<span>&yen;<span>3.6</span>起</span>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
+                            <div class="right">
+                                <p>1600皮肤❤炫彩五色龙瞎❤致胜神王❤海克斯全套-摄魂恐惧</p>
+                                <p>优惠价<span>&yen;<span>3.6</span>起</span>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
+                            <div class="right">
+                                <p>1600皮肤❤炫彩五色龙瞎❤致胜神王❤海克斯全套-摄魂恐惧</p>
+                                <p>优惠价<span>&yen;<span>3.6</span>起</span>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--引入头部-->
+    <div id="footer"></div>
+    <!--导入布局js，共享header和footer-->
+    <script type="text/javascript" src="js/include.js"></script>
+</body>
+
+</html>

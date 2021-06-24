@@ -1,0 +1,647 @@
+body,html{
+    direction: ltr;
+    width: 100%;
+    font-family: Microsoft Microsoft YaHei;
+    font-size: 14px;
+}
+
+blockquote, body, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, html, input, li, ol, p, pre, td, textarea, th, ul {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+#carousel-example-generic{
+    width: 720px;
+    height: 380px;
+    margin-left: 210px;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    margin-top: 13px;
+}
+
+.zhw-main{
+    background: url("../img/product/small/beijingshang.jpg");
+}
+
+.zhw-news{
+    width: 260px;
+    height: 380px;
+    float: right;
+    background-color: #fff;
+    margin-top: 13px;
+    position: relative;
+}
+.zhw-main,.zhw-main-box{
+    position: relative;
+}
+
+.zhw-main-box2{
+    height: 400px;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+
+.zhw-news .login_neck_wrap{
+    position: relative;
+}
+
+.zhw-news .zhw-main-auth{
+    width: 260px;
+    height: 148px;
+    overflow: hidden;
+}
+.zhw-news .auth-btn-box{
+    padding: 0 16px;
+    margin: 0 auto;
+}
+.zhw-news .zhw-home-avatar{
+    width: 63px;
+    height: 63px;
+    border-radius: 50%;
+    background-color: #fff;
+    margin: 16px auto;
+    box-shadow: 0 4px 18px 0 #ccc;
+    display: block;
+}
+.zhw-news .zhw-home-avatar img{
+    width: 59px;
+    height: 59px;
+    border-radius: 50%;
+    margin: 2px;
+}
+.zhw-news .auth-login-btn{
+    background: #fc3737;
+    color: #fff;
+}
+a:active,a:link,a:visited{
+    text-decoration: none;
+    cursor: pointer;
+}
+.fl{
+    float: left;
+}
+a{
+    transition: color .3s;
+}
+.zhw-news .zhw-auth-btn{
+    width: 104px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    border-radius: 2px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.zhw-news .auth-reg-btn{
+    border: 1px solid #c5c5c5;
+    color: #555353;
+}
+.fr{
+    float: right;
+}
+.clear{
+    clear: both;
+}
+.zhw-news .login_neck_wrap i{
+    position: absolute;
+    height: 24px;
+    top: 66px;
+    cursor: pointer;
+    left: 50%;
+    margin-left: -35px;
+}
+i{
+    font-style: normal;
+}
+.zhw-news .login_neck_wrap i img{
+    width: 100%;
+    height: 100%;
+}
+img{
+    vertical-align: top;
+}
+
+.zhw-news .home-news-box{
+    background-color: #fdfdfd;
+}
+
+
+
+.zhw-news .home-new-change-on,.zhw-news .home-new-change:hover{
+    color: #000;
+    font-weight: 700;
+}
+.zhw-news .home-new-change{
+    padding: 0 13px;
+    margin: 18px 0;
+    float: left;
+    color: #7c7c7c;
+    line-height: 12px;
+    cursor: pointer;
+}
+.zhw-news .home-news-more{
+    color: #afaeae;
+    font-size: 12px;
+    margin: 8px 7px 0;
+}
+.zhw-view-move{
+    float: right;
+    line-height: 30px;
+    padding-right: 15px;
+    position: relative;
+}
+.zhw-view-move a{
+    font-size: 12px;
+    color: #909090;
+}
+.zhw-news .home-new-list{
+    overflow: hidden;
+    padding: 0 14px;
+
+}
+
+
+ol,ul{
+    list-style: none;
+}
+
+ul{
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+.zhw-news .home-new-list li{
+    overflow: hidden;
+    margin-bottom: 13px;
+}
+li{
+    list-style: none;
+}
+.zhw-news .home-new-list a{
+    color: #888;
+    font-size: 12px;
+}
+li {
+    text-align: -webkit-match-parent;
+}
+a:-webkit-any-link {
+    /*color: -webkit-link;*/
+    cursor: pointer;
+    /*text-decoration: underline;*/
+}
+.zhw-news .home-new-list{
+    overflow: hidden;
+    padding: 0 14px;
+}
+.zhw-news .shq-down-btn {
+    width: 232px;
+    height: 40px;
+    background: #fc3737;
+    border-radius: 2px;
+    margin: 5px auto 0;
+    cursor: pointer;
+    text-align: center;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    overflow: hidden;
+    display: block;
+    position: relative;
+    text-indent: 10px;
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+.shq-down-icon {
+    width: 12px;
+    height: 18px;
+    display: inline-block;
+    background-position: -209px -51px;
+    position: absolute;
+    top: 12px;
+    left: 64px;
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+
+.zhw-special {
+    position: relative;
+    width: 1200px;
+    margin: 8px auto 0;
+    z-index: 99;
+}
+
+.zhw-special .home-special-flex {
+    width: 289px;
+    height: 136px;
+    margin-right: 15px;
+    position: relative;
+    overflow: hidden;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    transition: all .3s;
+}
+
+.zhw-special .home-special-flex i {
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+.zhw-special .special-flex-bg {
+    width: 289px;
+    height: 134px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+}
+.zhw-special .special-flex-text {
+    position: absolute;
+    z-index: 100;
+    top: 29px;
+    left: 20px;
+    cursor: pointer;
+}
+.zhw-special .special-flex-text p {
+    font-size: 22px;
+    color: #fff;
+    line-height: 36px;
+}
+.zhw-special .special-flex-text span {
+    font-size: 12px;
+    color: #fff;
+}
+.zhw-special .m-right0 {
+    margin-right: 0;
+}
+
+/*轮播下二*/
+.zhw-together {
+    width: 1200px;
+    margin: 44px auto;
+    position: relative;
+    z-index: 2;
+}
+.a-line, .over-hidden {
+    overflow: hidden;
+}
+.zhw-together .home-to-head {
+    margin-bottom: 6px;
+}
+.zhw-together .home-to-title {
+    font-size: 22px;
+    color: #000;
+    margin-right: 14px;
+}
+.zhw-together .tips-hot-icon {
+    width: 189px;
+    height: 20px;
+    background: url(//zuhaowan.zuhaowan.com/static/www3.0/dubhe/pages/index/img/home-tip-play.ead6292.png) no-repeat;
+    float: left;
+    margin-top: 5px;
+}
+.zhw-together .home-to-change {
+    margin-top: 2px;
+    margin-right: 30px;
+}
+.zhw-together .home-to-switch:first-child {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+.zhw-together .home-to-switch-on {
+    color: #fff;
+    background-color: #555;
+}
+.zhw-together .home-to-switch {
+    width: 80px;
+    height: 24px;
+    border: 1px solid #555;
+    color: #818181;
+    font-size: 12px;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+}
+.zhw-together .home-to-switch:last-child {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+.zhw-together .home-to-switch {
+    width: 80px;
+    height: 24px;
+    border: 1px solid #555;
+    color: #818181;
+    font-size: 12px;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+}
+.zhw-together .home-to-more {
+    color: #afaeae;
+    font-size: 12px;
+}
+.zhw-view-move {
+    float: right;
+    line-height: 30px;
+    padding-right: 15px;
+    position: relative;
+}
+.zhw-view-move a {
+    font-size: 12px;
+    color: #909090;
+}
+.zhw-view-move a.sprite-ico i {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    background-position: -246px -4px;
+    width: 6px;
+    height: 11px;
+}
+.free-play-list .slick-arrow, .icon {
+    display: inline-block;
+    vertical-align: middle;
+    background: url(//zuhaowan.zuhaowan.com/static/www3.0/dubhe/common/img/zhw-sprites.6557671.png) -41px -53px no-repeat;
+}
+
+/*轮播下2  4张图片*/
+.zhw-together .play-list {
+    overflow: hidden;
+    padding-top: 20px;
+    height: 303px;
+}
+.clearfix {
+    zoom: 1;
+}
+.zhw-together .play-list-li.active {
+    float: left;
+    width: 280px;
+    height: 303px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    overflow: visible;
+}
+.zhw-together .play-list-li {
+    float: left;
+    width: 185px;
+    height: 303px;
+    -webkit-box-shadow: 3px 2px 30px rgb(0 0 0);
+    box-shadow: 3px 2px 30px rgb(0 0 0 );
+    -webkit-transition: all .6s ease-out;
+    -moz-transition: all .6s ease-out;
+    transition: all .6s ease-out;
+    position: relative;
+    overflow: hidden;
+    background: #fff top no-repeat;
+}
+.play-list-li.active .list-title {
+    font-weight: 400;
+    font-stretch: normal;
+    line-height: 17px;
+    color: #fff;
+    text-align: left;
+    padding-left: 27px;
+}
+.zhw-together .play-list-li.active .list-title {
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin-top: 28px;
+}
+.zhw-together .play-list-li.active .list-intro {
+    font-size: 14px;
+    letter-spacing: 1px;
+    opacity: .7;
+    margin-top: 13px;
+}
+
+.zhw-together .play-list-li.active .list-intro, .zhw-together .play-list-li.active .list-title {
+    font-weight: 400;
+    font-stretch: normal;
+    line-height: 17px;
+    color: #fff;
+    text-align: left;
+    padding-left: 27px;
+}
+
+.zhw-together .play-list-li.active .list-person {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -15px;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.zhw-together .play-list-li.active .list-person img {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    position: absolute;
+    right: 0!important;
+    top: 0;
+}
+.zhw-together .play-list-li .list-person img {
+    -webkit-transform: scale(.85);
+    -moz-transform: scale(.85);
+    -ms-transform: scale(.85);
+    transform: scale(.85);
+    position: absolute;
+    right: -36px;
+    top: 68px;
+    -webkit-transition: all .6s ease-out;
+    -moz-transition: all .6s ease-out;
+    transition: all .6s ease-out;
+}
+img {
+    vertical-align: top;
+}
+
+
+.zhw-together .play-list-li.active .play-list-sel {
+    visibility: visible;
+}
+
+.zhw-together .play-list-label, .zhw-together .play-list-li .play-list-sel {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.zhw-together .play-list-li .play-list-sel {
+    visibility: hidden;
+    height: 86px;
+    background: #fff;
+    -webkit-box-shadow: 0 11px 46px 0 hsl(0deg 0% 51% / 30%);
+    box-shadow: 0 11px 46px 0 hsl(0deg 0% 51% / 30%);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.zhw-together .play-list-label {
+    width: 460px;
+    padding: 18px 0 0 16px;
+    line-height: 1;
+}
+.zhw-together .play-list-label a {
+    float: left;
+    display: block;
+    padding: 7px 12px;
+    font-size: 12px;
+    color: #404040;
+    border-radius: 2px;
+    text-decoration: none;
+    border: 1px solid #9a9a9a;
+    margin-right: 10px;
+    -webkit-transition: inherit;
+    -moz-transition: inherit;
+    transition: inherit;
+}
+.zhw-together .play-list-label a:last-child {
+    margin-right: 0;
+}
+
+/*第二张图片内容*/
+.zhw-together .play-list-li {
+    float: left;
+    width: 185px;
+    height: 303px;
+    -webkit-box-shadow: 3px 2px 30px rgb(0 0 0);
+    box-shadow: 3px 2px 30px rgb(0 0 0);
+    -webkit-transition: all .6s ease-out;
+    -moz-transition: all .6s ease-out;
+    transition: all .6s ease-out;
+    position: relative;
+    overflow: hidden;
+    background: #fff top no-repeat;
+}
+.zhw-together .play-list-li .list-intro, .zhw-together .play-list-li .list-title {
+    font-weight: 400;
+    font-stretch: normal;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    -webkit-transition: all .6s ease-out;
+    -moz-transition: all .6s ease-out;
+    transition: all .6s ease-out;
+}
+.zhw-together .play-list-li .list-title {
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-top: 34px;
+}
+.zhw-together .play-list-label {
+    width: 460px;
+    padding: 18px 0 0 16px;
+    line-height: 1;
+}
+.zhw-together .play-list-label a {
+    float: left;
+    display: block;
+    padding: 7px 12px;
+    font-size: 12px;
+    color: #404040;
+    border-radius: 2px;
+    text-decoration: none;
+    border: 1px solid #9a9a9a;
+    margin-right: 10px;
+    -webkit-transition: inherit;
+    -moz-transition: inherit;
+    transition: inherit;
+}
+.liu1{
+    height: 150px;
+    width: 100px;
+    margin-top: 80px;
+}
+
+.zhw-main-box-left{
+    float: left;
+    position: absolute;
+    width: 200px;
+    height: 380px;
+    background-color: white;
+    margin-top: 15px;
+}
+
+.zhw-main-box-left ul li{
+    height: 46px;
+    width: 200px;
+    margin: 15px 0;
+    display: block;
+}
+
+.zhw-main-box-left ul li span{
+    font-size: 15px;
+    line-height: 46px;
+    float: left;
+    padding-left: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #777;
+    display: block;
+}
+
+.zhw-main-box-left ul li img{
+    float: left;
+    display: block;
+    margin-top: 15px;
+    padding-left: 30px;
+}
+
+.zhw-main-box-left ul li:hover{
+    background-color: red;
+}
+
+.zhw-main-box-left ul li ul{
+    visibility: hidden;
+}
+
+.zhw-main-box-left ul li:hover .shouyouyincang{
+    background-color: #333;
+    visibility: visible;
+}
+
+.shouyouyincang{
+    display: none;
+    width: 80px;
+    left: 80px;
+    position: absolute;
+    top: 10px;
+    border: 1px solid #DDD;
+    z-index: 4;
+    background: white;
+    box-shadow: 0 0 8px #DDD;
+    -moz-box-shadow: 0 0 8px #DDD;
+    -webkit-box-shadow: 0 0 8px #DDD;
+}
+
+#bg1{
+    background: url("../img/product/lunboxia1/1.png");
+}
+
+#bg2{
+    background: url("../img/product/lunboxia1/2.png");
+}
+
+#bg3{
+    background: url("../img/product/lunboxia1/3.png");
+}
+
+#bg4{
+    background: url("../img/product/lunboxia1/4.png");
+}
+
+
+
